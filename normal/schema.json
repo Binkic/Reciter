@@ -1,0 +1,68 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "title": "古诗文默写题库挖空题库",
+    "type": "object",
+    "properties": {
+        "poems": {
+            "type": "array",
+            "title": "古诗文默写题库挖空题库组",
+            "items": {
+                "type": "object",
+                "title": "一篇古诗文默写挖空题库定义",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "title": "标题"
+                    },
+                    "author": {
+                        "type": "string",
+                        "title": "作者"
+                    },
+                    "source": {
+                        "type": "string",
+                        "title": "来源"
+                    },
+                    "content": {
+                        "type": "array",
+                        "title": "古诗词正文",
+                        "items": {
+                            "type": "array",
+                            "title": "\"一句\"",
+                            "description": "出题的最小单位",
+                            "items": {
+                                "title": "一个\"单元\"",
+                                "description": "挖空的最小单位",
+                                "if": {
+                                    "type": "string"
+                                },
+                                "then": {
+                                    "pattern": "^[一-龥]+$"
+                                },
+                                "else": {
+                                    "if": {
+                                        "type": "array"
+                                    },
+                                    "then": {
+                                        "items": {
+                                            "type": "string",
+                                            "title": "一个多版本\"单元\"",
+                                            "description": "挖空的最小单位",
+                                            "pattern": "^[一-龥]+$"
+                                        }
+                                    },
+                                    "else": {
+                                        "const": "每一个单元仅能为字符串或字符串数组。"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "title",
+                    "content"
+                ]
+            }
+        }
+    }
+}
