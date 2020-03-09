@@ -4,6 +4,7 @@
     "type": "object",
     "properties": {
         "poems": {
+            "$id": "#poems",
             "type": "array",
             "title": "古诗文默写题库挖空题库组",
             "items": {

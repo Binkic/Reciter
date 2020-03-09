@@ -4,6 +4,7 @@
     "type": "object",
     "properties": {
         "comprehensions": {
+            "$id": "#comprehensions",
             "type": "array",
             "title": "古诗文默写题库理解性默写题库组",
             "items": {
