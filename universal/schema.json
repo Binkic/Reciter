@@ -1,0 +1,59 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "title": "古诗文默写题库通用题库",
+    "type": "object",
+    "properties": {
+        "repositories": {
+            "type": "array",
+            "title": "古诗文默写题库通用题库组",
+            "items": {
+                "type": "object",
+                "title": "单篇古诗文默写题库通用题库",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "title": "标题"
+                    },
+                    "author": {
+                        "type": "string",
+                        "title": "作者"
+                    },
+                    "source": {
+                        "type": "string",
+                        "title": "来源"
+                    },
+                    "normal": {
+                        "$ref": "https://reciter.binkic.com/normal/schema.json#/properties/poems/items/properties/content"
+                    },
+                    "comprehensions": {
+                        "type": "array",
+                        "title": "理解性默写题库",
+                        "items": {
+                            "type": "object",
+                            "title": "单条理解性默写题目",
+                            "properties": {
+                                "content": {
+                                    "$ref": "https://reciter.binkic.com/comprehensions/schema.json#/properties/comprehensions/items/properties/content"
+                                },
+                                "answer": {
+                                    "$ref": "https://reciter.binkic.com/comprehensions/schema.json#/properties/comprehensions/items/properties/answer"
+                                }
+                            },
+                            "required": [
+                                "content",
+                                "answer"
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "title",
+                    "normal"
+                ]
+            }
+        }
+    },
+    "required": [
+        "repositories"
+    ]
+}
