@@ -1,10 +1,7 @@
 # 古诗文默写题库挖空题库
 
-## 资料来源
-1. QQ群
-2. 百度百科
-3. 维基百科
-4. 维基文库
+## 在线获取
+本题库的在线获取地址为: `https://reciter.binkic.com/normal/poems.json`
 
 ## 结构
 ```jsonc

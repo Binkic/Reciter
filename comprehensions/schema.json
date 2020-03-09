@@ -1,0 +1,70 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "title": "古诗文默写题库理解性默写题库",
+    "type": "object",
+    "properties": {
+        "comprehensions": {
+            "type": "array",
+            "title": "古诗文默写题库理解性默写题库组",
+            "items": {
+                "type": "object",
+                "title": "一条古诗文理解性默写题目定义",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "title": "标题"
+                    },
+                    "author": {
+                        "type": "string",
+                        "title": "作者"
+                    },
+                    "source": {
+                        "type": "string",
+                        "title": "来源"
+                    },
+                    "content": {
+                        "type": "string",
+                        "title": "题目"
+                    },
+                    "answer": {
+                        "type": "array",
+                        "title": "答案",
+                        "description": "本题的答案",
+                        "items": {
+                            "title": "答案的组成部分",
+                            "if": {
+                                "type": "string"
+                            },
+                            "then": {
+                                "pattern": "^[一-龥]+$"
+                            },
+                            "else": {
+                                "if": {
+                                    "type": "array"
+                                },
+                                "then": {
+                                    "items": {
+                                        "type": "string",
+                                        "title": "具有多个版本的答案的组成部分",
+                                        "pattern": "^[一-龥]+$"
+                                    }
+                                },
+                                "else": {
+                                    "const": "答案的组成部分仅能为字符串或字符串数组。"
+                                }
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "title",
+                    "content",
+                    "answer"
+                ]
+            }
+        }
+    },
+    "require": [
+        "comprehensions"
+    ]
+}
