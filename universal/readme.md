@@ -1,4 +1,4 @@
-# 理解性默写题库
+# 综合题库
 
 ## 在线获取
 本题库的在线获取地址为: `https://reciter.binkic.com/universal/universal.json`
