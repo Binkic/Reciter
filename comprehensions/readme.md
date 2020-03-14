@@ -1,7 +1,7 @@
 # 理解性默写题库
 
 ## 在线获取
-本题库的在线获取地址为: `https://reciter.binkic.com/comprehensions/comprehensions.json`
+- 本题库的在线获取地址为: `https://reciter.binkic.com/comprehensions/comprehensions.json`
 
 ## 结构
 ```jsonc

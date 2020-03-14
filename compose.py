@@ -1,5 +1,8 @@
+# 本文件用于将 poems.json 和 comprehensions.json 合并为 universal.json
+
 import json, zhon.hanzi, string
 
+# 屏蔽掉 comprehensions.json 有而 poems.json 无的内容
 ignored_list = [
     "竹里馆", "夜归鹿门歌", "菩萨蛮.其二", "阁夜",
     "沁园春.长沙", "雨巷", "再别康桥", "荆轲刺秦王",
@@ -11,20 +14,25 @@ ignored_list = set(ignored_list)
 def is_ignored(s) :
     return s in ignored_list
 
+# 标题比较需要跳过的内容
 title_filter = string.punctuation + zhon.hanzi.punctuation + ' '
 title_filter = set(title_filter)
 
+# 理解性默写去重比较需要跳过的内容
 comprehension_filter = string.punctuation + zhon.hanzi.punctuation + '$0123456789'
 comprehension_filter = set(title_filter)
 
+# 带有过滤器的字符串比较器
 def str_cmp(a, b, filter) :
     _a = ''.join(ch for ch in a if ch not in filter)
     _b = ''.join(ch for ch in b if ch not in filter)
     return _a == _b
 
+# 判断标题一致
 def judge_title(a, b) :
     return str_cmp(a, b, title_filter)
 
+# 判断理解性默写是否重复
 def judge_duplicate(poem, comprehension) :
     try :
         comprehensions = poem['comprehensions']
@@ -37,15 +45,16 @@ def judge_duplicate(poem, comprehension) :
     
     return True
 
+# 合并理解性默写题目
 def process_comprehension(comprehension) :
     if is_ignored(comprehension["title"]) :
-        return 1
+        return 1    # 在屏蔽列表中
 
     for i in universal_repositories :
         if judge_title(i["title"], comprehension["title"] ):
 
             if not judge_duplicate(i, comprehension) : 
-                return -2
+                return -2 # 题目重复
 
             if "source" not in i :
                 try :
@@ -71,11 +80,11 @@ def process_comprehension(comprehension) :
 
             comprehensions.append(single_record)
 
-            return 0
+            return 0 # 正常处理
 
-    return -1
+    return -1 # 在 poems.json 中不存在对应的内容
 
-
+# 主程序
 if __name__ == "__main__":
 
     normal_file = open("normal/poems.json", "rt", encoding='utf-8')

@@ -1,7 +1,7 @@
 # 综合题库
 
 ## 在线获取
-本题库的在线获取地址为: `https://reciter.binkic.com/universal/universal.json`
+- 本题库的在线获取地址为: `https://reciter.binkic.com/universal/universal.json`
 
 ## 结构
 ```jsonc
