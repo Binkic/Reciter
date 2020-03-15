@@ -1,4 +1,4 @@
-# 古诗文默写题库挖空题库
+# 挖空题库
 
 ## 在线获取
 - 本题库的在线获取地址为: `https://reciter.binkic.com/normal/poems.json`
