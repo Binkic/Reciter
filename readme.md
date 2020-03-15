@@ -6,11 +6,11 @@
 - 仓库地址 <https://github.com/Binkic/Reciter/>
 
 ## 目录
-|题库名|目录|
-|-----:|:-----|
-|挖空题库|[normal](normal/)|
-|理解性默写题库|[comprehension](comprehension/)|
-|综合题库|[universal](universal/)|
+| 题库名 | 目录 |
+| -----: | :----- |
+| 挖空题库 | [normal](normal/) |
+| 理解性默写题库 | [comprehension](comprehension/) |
+| 综合题库 | [universal](universal/) |
 
 ## 贡献者
 - [Eric](https://superexercisebook.com/)
