@@ -45,6 +45,33 @@ def judge_duplicate(poem, comprehension) :
     
     return True
 
+# 检查 s 是否出现在 poem 中
+def search_sentence(poem, s) :
+    if isinstance(poem, list) :
+        ret = False
+        for i in poem :
+            ret = ret or search_sentence(i, s)
+        return ret
+    elif isinstance(poem, str) :
+        return s == poem
+    else :
+        return False
+
+# 检查理解性默写答案
+def check_answer(poem, comprehension) :
+    for i in comprehension["answer"] :
+        if isinstance(i, str):
+            if not search_sentence(poem["normal"], i) :
+                return -1
+        elif isinstance(i, list) :
+            for j in i :
+                if not search_sentence(poem["content"], j) :
+                    return -1
+        else :
+            return -2
+
+    return 0
+
 # 合并理解性默写题目
 def process_comprehension(comprehension) :
     if is_ignored(comprehension["title"]) :
@@ -55,6 +82,17 @@ def process_comprehension(comprehension) :
 
             if not judge_duplicate(i, comprehension) : 
                 return -2 # 题目重复
+
+            status = check_answer(i, comprehension)
+            if status == -1 :
+                print("[警告] 理解性默写题目答案与文本不合")
+                print(comprehension)
+
+            if status == -2 :
+                print("[警告] 理解性默写题目格式错误")
+                print(comprehension)
+                return -3
+
 
             if "source" not in i :
                 try :
