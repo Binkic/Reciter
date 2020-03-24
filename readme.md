@@ -9,7 +9,7 @@
 | 题库名 | 目录 |
 | -----: | :----- |
 | 挖空题库 | [normal](normal/) |
-| 理解性默写题库 | [comprehension](comprehension/) |
+| 理解性默写题库 | [comprehensions](comprehensions/) |
 | 综合题库 | [universal](universal/) |
 
 ## 贡献者
