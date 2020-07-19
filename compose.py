@@ -30,7 +30,22 @@ def str_cmp(a, b, filter) :
 
 # 判断标题一致
 def judge_title(a, b) :
-    return str_cmp(a, b, title_filter)
+    x = 'tag' in a
+    y = 'tag' in b
+    
+    # 如果一个有 tag 一个无 tag 则他们必不匹配
+    if x ^ y :
+        return False
+
+    t = str_cmp(a['title'], b['title'], title_filter)
+
+    # 如果他们都没有 tag 的话那只需要匹配标题
+    if not x and not y :
+        return t
+
+    # 如果他们都有 tag 的话需要匹配 tag
+    return t and a['tag'] == b['tag']
+    
 
 # 判断理解性默写是否重复
 def judge_duplicate(poem, comprehension) :
@@ -78,7 +93,7 @@ def process_comprehension(comprehension) :
         return 1    # 在屏蔽列表中
 
     for i in universal_repositories :
-        if judge_title(i["title"], comprehension["title"] ):
+        if judge_title(i, comprehension):
 
             if not judge_duplicate(i, comprehension) : 
                 return -2 # 题目重复
@@ -151,7 +166,12 @@ if __name__ == "__main__":
             single_record["author"] = i["author"]
         except KeyError :
             pass
-
+        try :
+            single_record["tag"] = i["tag"]
+        except KeyError :
+            pass
+        
+        # 索引：title -> tag
         
         # single_record["comprehensions"] = []
         universal_repositories.append(single_record)
